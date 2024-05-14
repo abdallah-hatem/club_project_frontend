@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { Form, Input, Button, message } from "antd"
-import { isSubscribed, isUserLoggedIn } from "../../helpers/user"
+import { isSubscribed } from "../../helpers/user"
 
 import GET_USER_BY_ID from "../../apis/users/getUserById"
 import UPDATE_USER from "../../apis/users/updateUser"
@@ -11,6 +11,7 @@ export default function Details() {
 
   useEffect(() => {
     GET_USER_BY_ID(user?.id).then((res) => console.log(res, "res"))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handlePayment = (values) => {

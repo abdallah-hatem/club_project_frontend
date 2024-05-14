@@ -3,7 +3,6 @@ import { Card, Form, Input, Button, message } from "antd"
 
 import LOGIN from "../../apis/auth/login"
 import { useNavigate } from "react-router-dom"
-import { isDatePassed } from "../../helpers/date"
 
 export default function Login() {
   const router = useNavigate()
