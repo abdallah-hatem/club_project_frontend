@@ -2,32 +2,43 @@ import React from "react"
 import { Card, Form, Input, Button, message } from "antd"
 
 import LOGIN from "../../apis/auth/login"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import SIGNUP from "../../apis/auth/signup"
 
-export default function Login() {
+export default function Signup() {
   const router = useNavigate()
 
   const onFinish = (values) => {
-    LOGIN(values).then((res) => {
-      if (!res?.jwt) return message.error("Login failed")
+    SIGNUP(values).then((res) => {
+      console.log(res, "ressss")
+      if (!res?.user) return message.error("Error while signing up")
 
-      // if (isDatePassed(res?.user.subscribtion_end_date))
-      //   return message.error("Your subscribtion is expired! please renew")
-
-      localStorage.setItem("token", res.jwt)
-      localStorage.setItem("user", JSON.stringify(res.user))
-      router("/")
+      message.success("Successfully signed up, please login")
+      router("/login")
     })
   }
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <Card title="Login" style={{ width: 400 }}>
+      <Card title="Sign Up" style={{ width: 400 }}>
         <Form
-          name="loginForm"
+          name="signupForm"
           initialValues={{ remember: true }}
           onFinish={onFinish}
         >
+          <Form.Item
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Name!",
+              },
+            ]}
+          >
+            <Input placeholder="Name" />
+          </Form.Item>
+
           <Form.Item
             name="email"
             rules={[
@@ -50,15 +61,14 @@ export default function Login() {
 
           <Form.Item>
             <Button type="primary" htmlType="submit" className="w-full">
-              Log in
+              Sign Up
             </Button>
           </Form.Item>
         </Form>
-
         <div>
-          Dont have an account?{" "}
-          <Link to="/signup" className="text-blue-500">
-            Sign Up
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-500">
+            Login
           </Link>
         </div>
       </Card>

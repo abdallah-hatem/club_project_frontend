@@ -11,7 +11,7 @@ export default function Details() {
 
   useEffect(() => {
     GET_USER_BY_ID(user?.id).then((res) => console.log(res, "res"))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handlePayment = (values) => {
@@ -31,6 +31,8 @@ export default function Details() {
 
   return (
     <div className="container mx-auto flex flex-col items-center mt-10 min-h-screen">
+      <h1 className="text-2xl mb-10">Hello {user?.name}</h1>
+
       <h1 className="text-2xl mb-4">
         {!isSubscribed()
           ? `Your subscription is over. you need to pay ${ammount}$`

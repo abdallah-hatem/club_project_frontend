@@ -6,8 +6,8 @@ export default function Reservations() {
 
   useEffect(() => {
     GET_USER_BY_ID(user?.id).then((res) => console.log(res, "res"))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <div>Reservations</div>
+  return <div className="min-h-screen">Reservations</div>
 }
