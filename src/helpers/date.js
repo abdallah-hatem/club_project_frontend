@@ -31,3 +31,20 @@ export function addMinutesToDate(initialDate, minutes) {
 
   return updatedDateString
 }
+
+export const getTime = (dateTimeString) => {
+  const date = new Date(dateTimeString)
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+
+  // Convert hours to 12-hour format
+  const hours12 = hours % 12 || 12
+
+  // Add leading zeros to minutes if necessary
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes
+
+  // Determine if it's AM or PM
+  const period = hours < 12 ? "AM" : "PM"
+
+  return `${hours12}:${formattedMinutes} ${period}`
+}

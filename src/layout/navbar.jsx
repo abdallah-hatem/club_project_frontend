@@ -29,7 +29,9 @@ export default function Navbar() {
           <a
             key={link.id}
             href={link.url}
-            className=" hover:text-gray-300"
+            className={`hover:text-gray-300 ${
+              link.url === window.location.pathname && "text-red-500"
+            }`}
             onClick={() => router(link.url)}
           >
             {link.text}
