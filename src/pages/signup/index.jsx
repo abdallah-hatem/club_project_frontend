@@ -1,7 +1,6 @@
 import React from "react"
 import { Card, Form, Input, Button, message } from "antd"
 
-import LOGIN from "../../apis/auth/login"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import SIGNUP from "../../apis/auth/signup"
