@@ -1,10 +1,14 @@
+import { Button } from "antd"
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function Navbar() {
+  const router = useNavigate()
+
   const links = [
-    { id: 1, text: "Link 1", url: "#" },
-    { id: 2, text: "Link 2", url: "#" },
-    { id: 3, text: "Link 3", url: "#" },
+    { id: 1, text: "Reservations", url: "/reservations" },
+    { id: 2, text: "Details", url: "/details" },
+    { id: 3, text: "News", url: "#" },
   ]
 
   return (
@@ -13,10 +17,11 @@ export default function Navbar() {
         <img
           src="https://www.alahlyegypt.com/assets/images/new-logo.png"
           alt="Logo"
-          className="h-16"
+          className="h-16 cursor-pointer"
+          onClick={() => router("/")}
         />
       </div>
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 items-center">
         {links.map((link) => (
           <a
             key={link.id}
@@ -27,6 +32,15 @@ export default function Navbar() {
           </a>
         ))}
       </div>
+      <Button
+        className="bg-red-500 text-white border-0"
+        onClick={() => {
+          localStorage.removeItem("token")
+          router("/login")
+        }}
+      >
+        Logout
+      </Button>
     </nav>
   )
 }
