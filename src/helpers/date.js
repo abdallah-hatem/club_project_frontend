@@ -1,8 +1,12 @@
-export const formatDate = (dateString) => {
+import moment from "moment"
+
+export const formatDate = (dateString, reverse) => {
   const date = new Date(dateString)
   const day = date.getDate().toString().padStart(2, "0")
   const month = (date.getMonth() + 1).toString().padStart(2, "0")
   const year = date.getFullYear()
+
+  if (reverse === "reverse") return `${year}-${month}-${day}`
 
   return `${day}-${month}-${year}`
 }
@@ -47,4 +51,9 @@ export const getTime = (dateTimeString) => {
   const period = hours < 12 ? "AM" : "PM"
 
   return `${hours12}:${formattedMinutes} ${period}`
+}
+
+export const convertToISOFormat = (dateString) => {
+  const formattedDate = moment(dateString).subtract(1, "day").toISOString()
+  return formattedDate
 }
