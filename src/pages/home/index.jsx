@@ -1,6 +1,8 @@
 import React from "react"
 import CarouselComp from "../../components/carouselComp"
 
+import NewsCard from "../../components/newsCard"
+
 export default function Home() {
   const images = [
     {
@@ -14,10 +16,52 @@ export default function Home() {
     },
   ]
 
+  const news = [
+    {
+      date: "10-10-2022",
+      title: "Starting XI announced for Baladiyat El Mahalla",
+      url: "https://alahly-images.s3.us-east-2.amazonaws.com/Article/original/IMG_7857-662a9f5ec19d4.JPG",
+    },
+    {
+      date: "10-10-2022",
+      title: "Starting XI announced for Baladiyat El Mahalla",
+      url: "https://alahly-images.s3.us-east-2.amazonaws.com/Article/original/IMG_7857-662a9f5ec19d4.JPG",
+    },
+    {
+      date: "10-10-2022",
+      title: "Starting XI announced for Baladiyat El Mahalla",
+      url: "https://alahly-images.s3.us-east-2.amazonaws.com/Article/original/IMG_7857-662a9f5ec19d4.JPG",
+    },
+    {
+      date: "10-10-2022",
+      title: "Starting XI announced for Baladiyat El Mahalla",
+      url: "https://alahly-images.s3.us-east-2.amazonaws.com/Article/original/IMG_7857-662a9f5ec19d4.JPG",
+    },
+    {
+      date: "10-10-2022",
+      title: "Starting XI announced for Baladiyat El Mahalla",
+      url: "https://alahly-images.s3.us-east-2.amazonaws.com/Article/original/IMG_7857-662a9f5ec19d4.JPG",
+    },
+  ]
+
   return (
     <div className="min-h-screen">
       <div>
         <CarouselComp data={images} />
+      </div>
+
+      <div className="px-[100px]">
+        <h1 className="text-3xl font-bold my-10">Al Ahly News</h1>
+        <div className="grid grid-cols-3 gap-4">
+          {news.map((el, index) => (
+            <NewsCard
+              key={index}
+              date={el.date}
+              title={el.title}
+              imageUrl={el.url}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )

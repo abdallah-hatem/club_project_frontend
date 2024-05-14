@@ -4,7 +4,7 @@ const { Footer: AntdFooter } = Layout
 
 const Footer = () => {
   return (
-    <AntdFooter className="bg-gray-800 text-white text-center py-4">
+    <AntdFooter className="bg-gray-800 text-white text-center py-4 mt-10">
       <div className="flex justify-center items-center mb-4">
         <img
           src="https://www.alahlyegypt.com/assets/images/new-logo.png"
