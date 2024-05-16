@@ -5,6 +5,7 @@ import dayjs from "dayjs"
 import { formatDate } from "../../../helpers/date"
 
 import ADD_RESERVATION from "../../../apis/reservations/addReservations"
+import { scrollToTop } from "../../../helpers/scrollToTop"
 
 const { Option } = Select
 
@@ -40,6 +41,7 @@ const ChooseTime = ({
     ADD_RESERVATION(data).then(() => {
       message.success("Reservation created")
       setTimeout(() => {
+        scrollToTop()
         window.location.reload()
       }, 10)
     })
@@ -48,7 +50,11 @@ const ChooseTime = ({
   const generateTimeOptions = (disabledTimes) => {
     const options = []
     let currentTime = moment()
-    currentTime = currentTime.minute(Math.ceil(currentTime.minute() / 30) * 30) // Round to the nearest 30 minutes
+    if (moment(selDate).day() === moment().day()) {
+      currentTime = moment().minute(Math.ceil(currentTime.minute() / 30) * 30)
+    } else {
+      currentTime = moment().startOf("day")
+    }
     const endTime = moment().endOf("day")
 
     while (currentTime.isSameOrBefore(endTime)) {
@@ -61,7 +67,7 @@ const ChooseTime = ({
     return options
   }
 
-  const timeOptions = generateTimeOptions(bookedTimes ?? [])
+  const timeOptions = generateTimeOptions(bookedTimes?.flat() ?? [])
   const dateFormat = "YYYY-MM-DD"
 
   return (

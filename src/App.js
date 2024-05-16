@@ -10,6 +10,10 @@ import { isSubscribed, isUserLoggedIn } from "./helpers/user"
 import ErrorPage from "./pages/404"
 import Details from "./pages/details"
 import Signup from "./pages/signup"
+import Events from "./pages/events"
+import ContactUS from "./pages/contactUs"
+import Sports from "./pages/sports"
+import Faqs from "./pages/faqs"
 
 function App() {
   const PrivateRoutes = () => {
@@ -27,13 +31,20 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Home />} />
+
           <Route path="/details" element={<Details />} />
+
+          <Route path="/contact-us" element={<ContactUS />} />
 
           {/* cant access these routes if not subscribed */}
           <Route element={<SubscribersRoutes />}>
             <Route path="/reservations" element={<Reservations />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/sports" element={<Sports />} />
           </Route>
         </Route>
+
+        <Route path="/faqs" element={<Faqs />} />
 
         <Route path="/login" element={<Login />} />
 

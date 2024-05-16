@@ -10,8 +10,10 @@ export default function Navbar() {
   const links = [
     { id: 1, text: "Home", url: "/" },
     { id: 2, text: "Reservations", url: "/reservations" },
-    // { id: 3, text: "Details", url: "/details" },
-    { id: 4, text: "News", url: "#" },
+    { id: 3, text: "Sports", url: "/sports" },
+    { id: 4, text: "Events", url: "/events" },
+    { id: 5, text: "contact us", url: "/contact-us" },
+    { id: 6, text: "FAQs", url: "/faqs" },
   ]
 
   return (

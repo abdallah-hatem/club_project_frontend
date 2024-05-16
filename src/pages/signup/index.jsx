@@ -13,6 +13,8 @@ export default function Signup() {
       console.log(res, "ressss")
       if (!res?.user) return message.error("Error while signing up")
 
+      localStorage.setItem("token", res.jwt)
+
       message.success("Successfully signed up, please login")
       router("/login")
     })
@@ -56,6 +58,30 @@ export default function Signup() {
             rules={[{ required: true, message: "Please input your password!" }]}
           >
             <Input.Password placeholder="Password" />
+          </Form.Item>
+
+          <Form.Item
+            name="address"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Address!",
+              },
+            ]}
+          >
+            <Input placeholder="Address" />
+          </Form.Item>
+
+          <Form.Item
+            name="id_card"
+            rules={[
+              {
+                required: true,
+                message: "Please input your ID Card!",
+              },
+            ]}
+          >
+            <Input placeholder="ID Card" />
           </Form.Item>
 
           <Form.Item>
