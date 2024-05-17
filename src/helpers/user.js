@@ -6,6 +6,12 @@ export const isUserLoggedIn = () => {
   return false
 }
 
+export const isUserSignedUp = () => {
+  if (localStorage.getItem("signup")) return true
+
+  return false
+}
+
 export const isSubscribed = () => {
   const user = JSON.parse(localStorage.getItem("user"))
 

@@ -20,7 +20,7 @@ export default function Navbar() {
     <nav className="bg-white p-4 px-[100px] flex justify-between items-center h-[80px] border-b-2">
       <div className="flex items-center">
         <img
-          src="https://www.alahlyegypt.com/assets/images/new-logo.png"
+          src="https://seeklogo.com/images/N/new-radiant-sc-logo-1C47B40595-seeklogo.com.png"
           alt="Logo"
           className="h-16 cursor-pointer"
           onClick={() => router("/")}
@@ -40,27 +40,35 @@ export default function Navbar() {
           </a>
         ))}
       </div>
-      {isUserLoggedIn() ? (
-        <div className="flex space-x-4 items-center">
-          <Avatar
-            className="cursor-pointer"
-            onClick={() => router("/details")}
-            icon={<UserOutlined />}
-          />
-
+      <div className="flex space-x-4 items-center">
+        <Avatar
+          className="cursor-pointer"
+          onClick={() => router("/details")}
+          icon={<UserOutlined />}
+        />
+        {isUserLoggedIn() ? (
           <Button
             className="bg-red-500 text-white border-0"
             onClick={() => {
               localStorage.removeItem("token")
+              localStorage.removeItem("user")
+              localStorage.removeItem("signup")
               router("/login")
             }}
           >
             Logout
           </Button>
-        </div>
-      ) : (
-        <div></div>
-      )}
+        ) : (
+          <Button
+            className="bg-blue-500 text-white border-0"
+            onClick={() => {
+              router("/login")
+            }}
+          >
+            Login
+          </Button>
+        )}
+      </div>
     </nav>
   )
 }

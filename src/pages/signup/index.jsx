@@ -13,7 +13,9 @@ export default function Signup() {
       console.log(res, "ressss")
       if (!res?.user) return message.error("Error while signing up")
 
-      localStorage.setItem("token", res.jwt)
+      localStorage.setItem("signup", "signedUp")
+
+      localStorage.setItem("user", JSON.stringify(res.user))
 
       message.success("Successfully signed up, please login")
       router("/login")

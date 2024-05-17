@@ -1,6 +1,10 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Form, Input, Button, message, Card } from "antd"
-import { isSubscribed } from "../../helpers/user"
+import {
+  isSubscribed,
+  isUserLoggedIn,
+  isUserSignedUp,
+} from "../../helpers/user"
 
 import GET_USER_BY_ID from "../../apis/users/getUserById"
 import UPDATE_USER from "../../apis/users/updateUser"
@@ -9,6 +13,9 @@ import { formatDate } from "../../helpers/date"
 
 export default function Details() {
   const user = JSON.parse(localStorage.getItem("user"))
+
+  const [selectedPlan, setSelectedPlan] = useState("basic")
+  const [selecetedCost, setSelecetedCost] = useState(100000)
 
   useEffect(() => {
     GET_USER_BY_ID(user?.id).then((res) => console.log(res, "res"))
@@ -20,7 +27,7 @@ export default function Details() {
     message.success(`Payment successful. Amount: $${paymentAmount}`)
 
     UPDATE_USER(user?.id, {
-      subscribtion_end_date: addMinutesToDate(new Date(), 15),
+      subscribtion_end_date: addMinutesToDate(new Date(), 525600), // 1 year
     })
       .then((res) =>
         localStorage.setItem("user", JSON.stringify(res.updatedUser))
@@ -28,9 +35,7 @@ export default function Details() {
       .finally(() => window.location.reload())
   }
 
-  const ammount = 15000
-
-  return (
+  return isUserSignedUp() || isUserLoggedIn() ? (
     <div className="container mx-auto flex flex-col items-center mt-10 min-h-screen">
       <h1 className="text-2xl mb-10">Hello {user?.name}</h1>
 
@@ -60,9 +65,92 @@ export default function Details() {
         </div>
       </Card>
 
+      {!isSubscribed() && (
+        <div className="flex justify-center items-center mt-20">
+          <div className="grid grid-cols-3 gap-8">
+            <Card
+              title="Basic"
+              className={` text-center
+            ${
+              selectedPlan === "basic"
+                ? "border-2 border-blue-500"
+                : "border-2 border-white"
+            }`}
+            >
+              <p className="text-4xl font-bold text-gray-800">$100000</p>
+              {/* <p>Per month</p> */}
+              <ul className="mt-4">
+                <li>Access to basic facilities</li>
+                <li>Access only 2 branches</li>
+              </ul>
+              <Button
+                type="primary"
+                className="mt-6"
+                onClick={() => {
+                  setSelectedPlan("basic")
+                  setSelecetedCost(100000)
+                }}
+              >
+                Choose
+              </Button>
+            </Card>
+            <Card
+              title="Standard"
+              className={` text-center
+            ${
+              selectedPlan === "standard"
+                ? "border-2 border-blue-500"
+                : "border-2 border-white"
+            }`}
+            >
+              <p className="text-4xl font-bold text-gray-800">$150000</p>
+              <ul className="mt-4">
+                <li>Access to standard facilities</li>
+                <li>Access 4 branches</li>
+              </ul>
+              <Button
+                type="primary"
+                className="mt-6"
+                onClick={() => {
+                  setSelectedPlan("standard")
+                  setSelecetedCost(150000)
+                }}
+              >
+                Choose
+              </Button>
+            </Card>
+            <Card
+              title="Premium"
+              className={` text-center min-w-[270px]
+            ${
+              selectedPlan === "premium"
+                ? "border-2 border-blue-500"
+                : "border-2 border-white"
+            }`}
+            >
+              <p className="text-4xl font-bold text-gray-800">$200000</p>
+              <ul className="mt-4">
+                <li>Access to premium facilities</li>
+                <li>Access all branches</li>
+              </ul>
+              <Button
+                type="primary"
+                className="mt-6"
+                onClick={() => {
+                  setSelectedPlan("premium")
+                  setSelecetedCost(200000)
+                }}
+              >
+                Choose
+              </Button>
+            </Card>
+          </div>
+        </div>
+      )}
+
       <h1 className="text-2xl mb-4 mt-[100px]">
         {!isSubscribed()
-          ? `Your subscription is over. you need to pay ${ammount}$`
+          ? `Your subscription is ${selectedPlan}. you need to pay ${selecetedCost}$`
           : "Your subscription is active."}
       </h1>
 
@@ -79,7 +167,12 @@ export default function Details() {
                 {
                   required: true,
                   message: "Please enter the payment amount",
-                  pattern: /^15000$/,
+                  pattern:
+                    selecetedCost === 100000
+                      ? /^100000$/
+                      : selecetedCost === 200000
+                      ? /^200000$/
+                      : /^150000$/,
                 },
               ]}
             >
@@ -97,6 +190,10 @@ export default function Details() {
           </Form>
         </div>
       )}
+    </div>
+  ) : (
+    <div className="text-center mt-20 min-h-screen text-2xl font-bold">
+      Please login or sign up to access this page
     </div>
   )
 }

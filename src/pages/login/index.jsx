@@ -8,7 +8,16 @@ export default function Login() {
   const router = useNavigate()
 
   const onFinish = (values) => {
-    LOGIN(values).then((res) => {
+    const { email, password } = values
+
+    let data = {
+      email,
+      password,
+    }
+
+    if (!email.includes("@")) data = { membership_id: email, password }
+
+    LOGIN(data).then((res) => {
       if (!res?.jwt) return message.error("Login failed")
 
       // if (isDatePassed(res?.user.subscribtion_end_date))
@@ -33,12 +42,12 @@ export default function Login() {
             rules={[
               {
                 required: true,
-                message: "Please input your Email!",
-                type: "email",
+                message: "Please input your Email! or membership ID",
+                // type: "email",
               },
             ]}
           >
-            <Input placeholder="Email" />
+            <Input placeholder="Email or membership ID" />
           </Form.Item>
 
           <Form.Item

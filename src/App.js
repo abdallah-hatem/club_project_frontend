@@ -32,8 +32,6 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Home />} />
 
-          <Route path="/details" element={<Details />} />
-
           <Route path="/contact-us" element={<ContactUS />} />
 
           {/* cant access these routes if not subscribed */}
@@ -43,6 +41,8 @@ function App() {
             <Route path="/sports" element={<Sports />} />
           </Route>
         </Route>
+
+        <Route path="/details" element={<Details />} />
 
         <Route path="/faqs" element={<Faqs />} />
 
