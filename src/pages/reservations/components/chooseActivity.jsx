@@ -19,7 +19,7 @@ const ChooseActivity = ({ next, setSelectedActivityId }) => {
   }
 
   useEffect(() => {
-    GET_ACTIVITIES().then((res) => setData(res.result))
+    GET_ACTIVITIES().then((res) => setData(res?.result))
   }, [])
 
   return (

@@ -14,6 +14,8 @@ import Events from "./pages/events"
 import ContactUS from "./pages/contactUs"
 import Sports from "./pages/sports"
 import Faqs from "./pages/faqs"
+import EventDetails from "./pages/eventDetails"
+import NewsDetails from "./pages/newsDetails"
 
 function App() {
   const PrivateRoutes = () => {
@@ -36,6 +38,8 @@ function App() {
 
           {/* cant access these routes if not subscribed */}
           <Route element={<SubscribersRoutes />}>
+            <Route path="/event/:id" element={<EventDetails />} />
+            <Route path="/news/:id" element={<NewsDetails />} />
             <Route path="/reservations" element={<Reservations />} />
             <Route path="/events" element={<Events />} />
             <Route path="/sports" element={<Sports />} />

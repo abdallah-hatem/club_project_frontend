@@ -77,7 +77,7 @@ export default function Details() {
                 : "border-2 border-white"
             }`}
             >
-              <p className="text-4xl font-bold text-gray-800">$100000</p>
+              <p className="text-4xl font-bold text-gray-800">e£15000</p>
               {/* <p>Per month</p> */}
               <ul className="mt-4">
                 <li>Access to basic facilities</li>
@@ -88,7 +88,7 @@ export default function Details() {
                 className="mt-6"
                 onClick={() => {
                   setSelectedPlan("basic")
-                  setSelecetedCost(100000)
+                  setSelecetedCost(15000)
                 }}
               >
                 Choose
@@ -103,7 +103,7 @@ export default function Details() {
                 : "border-2 border-white"
             }`}
             >
-              <p className="text-4xl font-bold text-gray-800">$150000</p>
+              <p className="text-4xl font-bold text-gray-800">e£20000</p>
               <ul className="mt-4">
                 <li>Access to standard facilities</li>
                 <li>Access 4 branches</li>
@@ -113,7 +113,7 @@ export default function Details() {
                 className="mt-6"
                 onClick={() => {
                   setSelectedPlan("standard")
-                  setSelecetedCost(150000)
+                  setSelecetedCost(20000)
                 }}
               >
                 Choose
@@ -128,7 +128,7 @@ export default function Details() {
                 : "border-2 border-white"
             }`}
             >
-              <p className="text-4xl font-bold text-gray-800">$200000</p>
+              <p className="text-4xl font-bold text-gray-800">e£25000</p>
               <ul className="mt-4">
                 <li>Access to premium facilities</li>
                 <li>Access all branches</li>
@@ -138,7 +138,7 @@ export default function Details() {
                 className="mt-6"
                 onClick={() => {
                   setSelectedPlan("premium")
-                  setSelecetedCost(200000)
+                  setSelecetedCost(25000)
                 }}
               >
                 Choose
@@ -150,7 +150,7 @@ export default function Details() {
 
       <h1 className="text-2xl mb-4 mt-[100px]">
         {!isSubscribed()
-          ? `Your subscription is ${selectedPlan}. you need to pay ${selecetedCost}$`
+          ? `Your subscription is ${selectedPlan}. you need to pay ${selecetedCost}e£`
           : "Your subscription is active."}
       </h1>
 
@@ -168,11 +168,11 @@ export default function Details() {
                   required: true,
                   message: "Please enter the payment amount",
                   pattern:
-                    selecetedCost === 100000
-                      ? /^100000$/
-                      : selecetedCost === 200000
-                      ? /^200000$/
-                      : /^150000$/,
+                    selecetedCost === 15000
+                      ? /^15000$/
+                      : selecetedCost === 20000
+                      ? /^20000$/
+                      : /^25000$/,
                 },
               ]}
             >

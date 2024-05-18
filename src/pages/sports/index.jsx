@@ -15,6 +15,13 @@ export default function Sports() {
   const [selectedSport, setSelectedSport] = useState(null)
   const [availableCoaches, setAvailableCoaches] = useState([])
   const [selectedCoach, setSelectedCoach] = useState(null)
+  const [selectedCoachDetails, setSelectedCoachDetails] = useState(null)
+
+  console.log(selectedCoachDetails)
+
+  console.log(sports)
+
+  console.log(selectedCoach)
 
   const [bookedPractices, setBookedPractices] = useState([])
 
@@ -46,6 +53,20 @@ export default function Sports() {
       setAvailableCoaches(filteredCoaches)
     }
   }, [selectedSport])
+
+  useEffect(() => {
+    const extractCoachDetailsByName = (coaches, coachName) => {
+      return coaches.filter((coach) => coach.name === coachName)
+    }
+
+    if (selectedCoach) {
+      const coachDetails = extractCoachDetailsByName(
+        selectedSport?.practices.map((practice) => practice.coach),
+        selectedCoach
+      )
+      setSelectedCoachDetails(coachDetails[0])
+    }
+  }, [selectedCoach])
 
   const handleSportSelect = (sport) => {
     setSelectedSport(sport)
@@ -156,7 +177,23 @@ export default function Sports() {
         </Select>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* coach details */}
+      {selectedCoachDetails && selectedCoach && (
+        <Card className="max-w-xl mx-auto mt-5">
+          <div className="text-center">
+            <h2 className="text-xl font-semibold">
+            Coach:   {selectedCoachDetails?.name}
+            </h2>
+            <p className="text-gray-500">Age: {selectedCoachDetails?.age}</p>
+            <p className="text-gray-500">
+              Years of Experience: {selectedCoachDetails?.years_of_experience}
+            </p>
+          </div>
+          <p className="mt-4">{selectedCoachDetails?.brief}</p>
+        </Card>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
         {selectedSport?.practices.length > 0 ? (
           selectedSport?.practices
             .filter(
