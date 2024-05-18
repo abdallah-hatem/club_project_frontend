@@ -66,6 +66,7 @@ export default function Sports() {
       )
       setSelectedCoachDetails(coachDetails[0])
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCoach])
 
   const handleSportSelect = (sport) => {
@@ -182,7 +183,7 @@ export default function Sports() {
         <Card className="max-w-xl mx-auto mt-5">
           <div className="text-center">
             <h2 className="text-xl font-semibold">
-            Coach:   {selectedCoachDetails?.name}
+              Coach: {selectedCoachDetails?.name}
             </h2>
             <p className="text-gray-500">Age: {selectedCoachDetails?.age}</p>
             <p className="text-gray-500">
