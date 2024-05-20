@@ -15,7 +15,7 @@ export default function Details() {
   const user = JSON.parse(localStorage.getItem("user"))
 
   const [selectedPlan, setSelectedPlan] = useState("basic")
-  const [selecetedCost, setSelecetedCost] = useState(100000)
+  const [selecetedCost, setSelecetedCost] = useState(15000)
 
   useEffect(() => {
     GET_USER_BY_ID(user?.id).then((res) => console.log(res, "res"))
