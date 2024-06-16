@@ -12,8 +12,8 @@ const center = {
   lng: 31.220952,
 }
 
-const googleMapsApiKey = "AIzaSyBPq8l_d9x4C8jmw6TL_KYjtQv3lyBbRRU" // prod
-// const googleMapsApiKey = "AIzaSyCuTilAfnGfkZtIx0T3qf-eOmWZ_N2LpoY" // dev general
+// const googleMapsApiKey = "AIzaSyBPq8l_d9x4C8jmw6TL_KYjtQv3lyBbRRU" // prod
+const googleMapsApiKey = "AIzaSyCuTilAfnGfkZtIx0T3qf-eOmWZ_N2LpoY" // dev general
 // const googleMapsApiKey = "AIzaSyCnIaqTP0yX4akiGmKCfI5wWem-mZ7_X8o" // dev my location
 // const googleMapsApiKey = "AIzaSyCuTilAfnGfkZtIx0T3qf-eOmWZ_N2LpoY" // dev
 // googleMapsApiKey: 'AIzaSyAiXRLddC53YrmqhX_FNX62e2SQN6TiP3M', // dev
