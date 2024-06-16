@@ -18,6 +18,8 @@ export default function Reservations() {
   const [fields, setFields] = useState()
   const [bookedTimes, setBookedTimes] = useState()
 
+  console.log(data)
+
   useEffect(() => {
     selectedActivityId &&
       selectedDate &&
@@ -96,6 +98,7 @@ export default function Reservations() {
         {data && data.length > 0 ? (
           data.map((el, index) => (
             <ResrvationCard
+              scheduleId={el.id}
               title={el.activity.name}
               courtName={el.fields.name}
               selectedTimes={el.selectedTimes}
@@ -109,14 +112,15 @@ export default function Reservations() {
       </div>
 
       {/* reserve a court */}
-
       <div className="container mx-auto mt-8 mb-8">
         <Row justify="center">
           <Col span={24}>
             <div className="text-center mb-8 mt-16">
-              <h1 className="text-3xl font-bold">Activity Reservation</h1>
+              <h1 className="text-3xl text-center font-bold">
+                Activity Reservation
+              </h1>
               <p className="text-gray-500">
-                Select a date and time range to reserve a padel court
+                Select a date and time range to reserve a court
               </p>
             </div>
           </Col>

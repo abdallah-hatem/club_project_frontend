@@ -1,15 +1,35 @@
-import { Card } from "antd"
+import { Button, Card, message } from "antd"
 import React from "react"
 import { formatDate } from "../helpers/date"
+import { DeleteOutlined } from "@ant-design/icons"
+
+import DELETE_RESERVATION from "../apis/reservations/deleteResrvation"
 
 export default function ResrvationCard({
   title,
   courtName,
   selectedTimes,
   date,
+  scheduleId,
 }) {
   return (
-    <Card className="shadow-lg" title={title + " Reservation"}>
+    <Card
+      className="shadow-lg"
+      title={title + " Reservation"}
+      extra={
+        <Button
+          icon={<DeleteOutlined style={{ color: "red" }} />}
+          onClick={(e) =>
+            DELETE_RESERVATION(scheduleId).then(() => {
+              message.success("successfully deleted")
+              setTimeout(() => {
+                window.location.reload()
+              }, 400)
+            })
+          }
+        />
+      }
+    >
       <p className="mb-2 text-xl font-semibold">{courtName}</p>
       <p className="mt-4 text-base">
         Date:

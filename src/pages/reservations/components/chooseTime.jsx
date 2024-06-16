@@ -38,6 +38,8 @@ const ChooseTime = ({
       user_id: userId,
     }
 
+    // console.log(data)
+
     ADD_RESERVATION(data).then(() => {
       message.success("Reservation created")
       setTimeout(() => {
@@ -53,7 +55,7 @@ const ChooseTime = ({
     if (moment(selDate).day() === moment().day()) {
       currentTime = moment().minute(Math.ceil(currentTime.minute() / 30) * 30)
     } else {
-      currentTime = moment().startOf("day")
+      currentTime = moment().startOf("day").hour(8).minute(0)
     }
     const endTime = moment().endOf("day")
 

@@ -79,11 +79,11 @@ export default function Signup() {
             rules={[
               {
                 required: true,
-                message: "Please input your ID Card!",
+                message: "Please input your National ID!",
               },
             ]}
           >
-            <Input placeholder="ID Card" />
+            <Input placeholder="National ID" />
           </Form.Item>
 
           <Form.Item>

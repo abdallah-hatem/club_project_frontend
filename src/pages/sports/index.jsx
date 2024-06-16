@@ -4,6 +4,7 @@ import GET_ALL_SPORTS from "../../apis/sports/getAllSports"
 import BOOK_PRACTICE from "../../apis/sports/bookPractice"
 import GET_BOOKED_PRACTICE_BY_USER_ID from "../../apis/sports/getBookedPracticeByUserId"
 import { scrollToTop } from "../../helpers/scrollToTop"
+import { formatDate, isDatePassed } from "../../helpers/date"
 
 export default function Sports() {
   const { Meta } = Card
@@ -75,6 +76,10 @@ export default function Sports() {
 
   function handleBookPractice(vals) {
     const { id } = vals
+
+    console.log(vals)
+    if (isDatePassed(vals.deadline)) return message.error("Deadline has passed")
+
     BOOK_PRACTICE({ practice_id: id, user_id: user.id }).then((res) => {
       if (res?.message) return message.error("You already booked this practice")
 
@@ -221,6 +226,7 @@ export default function Sports() {
                   ))}
                 </p>
                 <p>Price: {practice.price}</p>
+                <p>Deadline: {formatDate(practice.deadline)}</p>
                 <Button
                   type="primary"
                   className="w-full mt-4"

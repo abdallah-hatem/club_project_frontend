@@ -15,7 +15,7 @@ export default function Details() {
   const user = JSON.parse(localStorage.getItem("user"))
 
   const [selectedPlan, setSelectedPlan] = useState("basic")
-  const [selecetedCost, setSelecetedCost] = useState(15000)
+  const [selecetedCost, setSelecetedCost] = useState(10000)
 
   useEffect(() => {
     GET_USER_BY_ID(user?.id).then((res) => console.log(res, "res"))
@@ -77,7 +77,7 @@ export default function Details() {
                 : "border-2 border-white"
             }`}
             >
-              <p className="text-4xl font-bold text-gray-800">e£15000</p>
+              <p className="text-4xl font-bold text-gray-800">e£10000</p>
               {/* <p>Per month</p> */}
               <ul className="mt-4">
                 <li>Access to basic facilities</li>
@@ -88,7 +88,7 @@ export default function Details() {
                 className="mt-6"
                 onClick={() => {
                   setSelectedPlan("basic")
-                  setSelecetedCost(15000)
+                  setSelecetedCost(10000)
                 }}
               >
                 Choose
@@ -103,7 +103,7 @@ export default function Details() {
                 : "border-2 border-white"
             }`}
             >
-              <p className="text-4xl font-bold text-gray-800">e£20000</p>
+              <p className="text-4xl font-bold text-gray-800">e£15000</p>
               <ul className="mt-4">
                 <li>Access to standard facilities</li>
                 <li>Access 4 branches</li>
@@ -113,7 +113,7 @@ export default function Details() {
                 className="mt-6"
                 onClick={() => {
                   setSelectedPlan("standard")
-                  setSelecetedCost(20000)
+                  setSelecetedCost(15000)
                 }}
               >
                 Choose
@@ -128,7 +128,7 @@ export default function Details() {
                 : "border-2 border-white"
             }`}
             >
-              <p className="text-4xl font-bold text-gray-800">e£25000</p>
+              <p className="text-4xl font-bold text-gray-800">e£20000</p>
               <ul className="mt-4">
                 <li>Access to premium facilities</li>
                 <li>Access all branches</li>
@@ -138,7 +138,7 @@ export default function Details() {
                 className="mt-6"
                 onClick={() => {
                   setSelectedPlan("premium")
-                  setSelecetedCost(25000)
+                  setSelecetedCost(20000)
                 }}
               >
                 Choose
@@ -168,11 +168,11 @@ export default function Details() {
                   required: true,
                   message: "Please enter the payment amount",
                   pattern:
-                    selecetedCost === 15000
+                    selecetedCost === 10000
+                      ? /^10000$/
+                      : selecetedCost === 15000
                       ? /^15000$/
-                      : selecetedCost === 20000
-                      ? /^20000$/
-                      : /^25000$/,
+                      : /^20000$/,
                 },
               ]}
             >
